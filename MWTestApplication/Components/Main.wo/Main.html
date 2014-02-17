@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+	<head>
+		<title>MWTest</title>
+	</head>
+	<body><wo:hyperlink pageName = "DirectorEditor">director-editor</wo:hyperlink> | 
+	<wo:hyperlink pageName = "CountryEditor">country-editor</wo:hyperlink>
+	<wo:form><wo:popUpButton list="$allMovies" item="$currentMovie" selection="$selectedMovie" displayString = "$currentMovie.name" onChange="submit()" noSelectionString = "--Create new--"/></wo:form>
+<wo:if condition = "$selectedMovie" negate = "$true"><fieldset><legend>Create Movie</legend>
+<wo:form>
+<table>
+<tr><th>Name</th><td><wo:textField value="$newName" /></td></tr>
+<tr><th>Story</th><td><wo:text value="$newStory" /></td></tr>
+<tr><th colspan="2"><wo:submitButton action="$createMovie" /></th></tr>
+</table>
+</wo:form>
+</fieldset>
+</wo:if>
+<wo:else>
+<fieldset><legend>Edit Movie <wo:string value="$selectedMovie.name" /></legend>
+<wo:form><table>
+<tr><th>Name</th><td><wo:textField value="$selectedMovie.name" /></td></tr>
+<tr><th>Revenue</th><td><wo:textField value="$selectedMovie.revenue" numberformat = "0"/></td></tr>
+<tr><th>Release date</th><td><wo:textField value="$selectedMovie.releaseDate" dateformat = "%d.%m.%y"/> %d.%m.%y</td></tr>
+<tr><th>Story</th><td><wo:text value="$selectedMovie.story" /></td></tr>
+<tr><th>Countries released</th><td><wo:browser multiple = "$true" selections = "$selectedMovie.releasedCountries" list = "$allCountry" item="$currentCountry" displayString = "$currentCountry.name"/></td></tr>
+<tr><th>Director</th><td><wo:popUpButton list="$allDirector" item="$currentDirector" displayString = "$currentDirector.name" selection = "$selectedMovie.director" noSelectionString = "--unknown--"/></td></tr>
+<tr><th colspan="2"><wo:submitButton action="$saveChanges" /> <wo:hyperlink action="$deleteMovie" string = "delete Movie" /> </th></tr>
+</table>
+</wo:form>
+</fieldset></wo:else>
+
+<hr />
+<table border="1">
+<tr><th>Name</th><th>Story</th></tr>
+<wo:repetition list="$allMovies" item="$currentMovie"><tr><td><wo:string value="$currentMovie.name" /></td><td><wo:string value="$currentMovie.story" /></td></tr></wo:repetition>
+</table>
+	</body>
+</html>

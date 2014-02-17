@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>Director Editor</title>
+</head>
+<body><wo:hyperlink pageName = "Main">movie-editor</wo:hyperlink>
+
+<wo:form><wo:popUpButton list="$allDirector" noSelectionString="--Create Director--" item="$currentDirector" displayString = "$currentDirector.name" selection="$selectedDirector" onChange="submit()" /></wo:form>
+<wo:if condition = "$selectedDirector">
+<fieldset><legend>Edit Director <wo:string value="$selectedDirector.name" /> </legend>
+<wo:form>
+<table border="1">
+<tr><th>Name</th><td><wo:textField value="$selectedDirector.name" /></td></tr>
+<tr><th colspan="2"><wo:submitButton action="$saveChanges" /></th></tr>
+</table>
+</wo:form>
+</fieldset>
+</wo:if>
+<wo:else>
+<fieldset><legend>Create new Director</legend>
+<wo:form>
+
+<table border="1">
+<tr><th>Name</th><td><wo:textField value="$newDirectorName" /></td></tr>
+<tr><th colspan="2"><wo:submitButton action="$createDirector" /></th></tr>
+</table>
+
+</wo:form>
+</fieldset>
+</wo:else>
+
+</body>
+</html>

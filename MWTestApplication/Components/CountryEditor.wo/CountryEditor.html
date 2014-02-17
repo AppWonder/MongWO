@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>Director Editor</title>
+</head>
+<body><wo:hyperlink pageName = "Main">movie-editor</wo:hyperlink>
+
+<wo:form><wo:popUpButton list="$allCountry" noSelectionString="--Create Director--" item="$currentCountry" displayString = "$currentCountry.name" selection="$selectedCountry" onChange="submit()" /></wo:form>
+<wo:if condition = "$selectedCountry">
+<fieldset><legend>Edit Director <wo:string value="$selectedCountry.name" /> </legend>
+<wo:form>
+<table border="1">
+<tr><th>Name</th><td><wo:textField value="$selectedCountry.name" /></td></tr>
+<tr><th>Movies</th><td><wo:browser list="$allMovies" selections="$selectedCountry.movies" multiple = "$true" item="$currentMovie" displayString = "$currentMovie.name"/></td></tr>
+<tr><th colspan="2"><wo:submitButton action="$saveChanges" /></th></tr>
+</table>
+</wo:form>
+</fieldset>
+</wo:if>
+<wo:else>
+<fieldset><legend>Create new Director</legend>
+<wo:form>
+
+<table border="1">
+<tr><th>Name</th><td><wo:textField value="$newCountryName" /></td></tr>
+<tr><th colspan="2"><wo:submitButton action="$createCountry" /></th></tr>
+</table>
+
+</wo:form>
+</fieldset>
+</wo:else>
+
+</body>
+</html>
