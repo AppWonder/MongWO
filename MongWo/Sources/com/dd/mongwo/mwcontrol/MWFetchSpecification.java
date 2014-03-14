@@ -1,4 +1,4 @@
-package com.dd.mongwo;
+package com.dd.mongwo.mwcontrol;
 
 
 
@@ -6,6 +6,7 @@ import java.util.List;
 
 
 
+import com.dd.mongwo.mwaccess.MWModel;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
 import com.webobjects.foundation.NSArray;

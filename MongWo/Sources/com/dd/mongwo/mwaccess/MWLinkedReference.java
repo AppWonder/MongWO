@@ -1,4 +1,4 @@
-package com.dd.mongwo;
+package com.dd.mongwo.mwaccess;
 
 public class MWLinkedReference {
 	private String leftKey;

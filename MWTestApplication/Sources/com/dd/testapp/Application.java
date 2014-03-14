@@ -1,7 +1,7 @@
 package com.dd.testapp;
 
-import com.dd.mongwo.MWEntity;
-import com.dd.mongwo.MWModel;
+import com.dd.mongwo.mwaccess.MWEntity;
+import com.dd.mongwo.mwaccess.MWModel;
 import com.mongodb.MongoClient;
 
 import er.extensions.appserver.ERXApplication;

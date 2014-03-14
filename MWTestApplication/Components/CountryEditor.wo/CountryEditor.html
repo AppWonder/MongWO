@@ -6,11 +6,11 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title>Director Editor</title>
 </head>
-<body><wo:hyperlink pageName = "Main">movie-editor</wo:hyperlink>
+<body><wo:hyperlink pageName = "Main">country-editor</wo:hyperlink>
 
-<wo:form><wo:popUpButton list="$allCountry" noSelectionString="--Create Director--" item="$currentCountry" displayString = "$currentCountry.name" selection="$selectedCountry" onChange="submit()" /></wo:form>
+<wo:form><wo:popUpButton list="$allCountry" noSelectionString="--Create Country--" item="$currentCountry" displayString = "$currentCountry.name" selection="$selectedCountry" onChange="submit()" /></wo:form>
 <wo:if condition = "$selectedCountry">
-<fieldset><legend>Edit Director <wo:string value="$selectedCountry.name" /> </legend>
+<fieldset><legend>Edit Country <wo:string value="$selectedCountry.name" /> </legend>
 <wo:form>
 <table border="1">
 <tr><th>Name</th><td><wo:textField value="$selectedCountry.name" /></td></tr>

@@ -1,5 +1,6 @@
-package com.dd.mongwo;
+package com.dd.mongwo.mwaccess;
 
+import com.dd.mongwo.mwcontrol.MWGenericRecord;
 import com.mongodb.DBObject;
 import com.webobjects.foundation.NSMutableDictionary;
 

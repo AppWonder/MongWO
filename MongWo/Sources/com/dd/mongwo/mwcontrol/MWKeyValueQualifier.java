@@ -1,4 +1,4 @@
-package com.dd.mongwo;
+package com.dd.mongwo.mwcontrol;
 import java.util.regex.Pattern;
 
 import com.mongodb.BasicDBObject;

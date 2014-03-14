@@ -1,4 +1,4 @@
-package com.dd.mongwo;
+package com.dd.mongwo.mwcontrol;
 
 import com.mongodb.BasicDBObject;
 import com.webobjects.eocontrol.EOSortOrdering;

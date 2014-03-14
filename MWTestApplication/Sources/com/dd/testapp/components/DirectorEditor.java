@@ -1,7 +1,7 @@
 package com.dd.testapp.components;
 
 
-import com.dd.mongwo.MWEditingContext;
+import com.dd.mongwo.mwcontrol.MWEditingContext;
 import com.dd.testapp.Application;
 import com.dd.testapp.Director;
 import com.webobjects.appserver.WOActionResults;

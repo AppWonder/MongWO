@@ -1,6 +1,6 @@
 package com.dd.testapp;
 
-import com.dd.mongwo.MWGenericRecord;
+import com.dd.mongwo.mwcontrol.MWGenericRecord;
 import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSTimestamp;
 

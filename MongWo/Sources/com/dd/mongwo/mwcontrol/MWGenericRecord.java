@@ -1,4 +1,4 @@
-package com.dd.mongwo;
+package com.dd.mongwo.mwcontrol;
 
 import java.util.Date;
 import java.util.List;
@@ -6,7 +6,10 @@ import java.util.Map;
 import java.util.Set;
 
 import org.bson.BSONObject;
+import org.bson.types.ObjectId;
 
+import com.dd.mongwo.mwaccess.MWEntity;
+import com.dd.mongwo.mwaccess.MWModel;
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
@@ -22,17 +25,18 @@ public class MWGenericRecord implements DBObject{
 	private String collectionName;
 	private MWEditingContext editingContext;
 	private Object _primaryKey;
+	private static String ID_KEY = "_id";
 	
 	protected MWGenericRecord(DBObject object, DBCollection collection){
 		_values = object;
 		this.collection = collection;
-		_primaryKey = object.get("_id");
+		_primaryKey = object.get(ID_KEY);
 	}
 	
 	public MWGenericRecord(String entityName){
 		_values = new BasicDBObject();
 		_values.put(MWEntity.ENTITY_KEY, entityName);
-		_primaryKey = hashCode();
+		_primaryKey = new ObjectId();
 	}
 	
 	public Object storedValueForKey(String key){
@@ -145,13 +149,7 @@ public class MWGenericRecord implements DBObject{
 		if(list==null){
 			throw new IllegalArgumentException("Cannot do anything with object of type: "+storedRef.getClass().getName());
 		}
-		/*
-		for(Object ref : list){
-				if(((DBRef)ref).getId().equals(record.primaryKey())){
-					list.remove(ref);
-				}
-		}
-		*/
+
 		while(list.contains(record.values())){
 			list.remove(record.values());
 		}
@@ -174,58 +172,47 @@ public class MWGenericRecord implements DBObject{
 	}
 
 	public boolean containsField(String arg0) {
-		// TODO Auto-generated method stub
 		return _values.containsField(arg0);
 	}
 
 	public boolean containsKey(String arg0) {
-		// TODO Auto-generated method stub
 		return _values.containsKey(arg0);
 	}
 
 	public Object get(String arg0) {
-		// TODO Auto-generated method stub
 		return _values.get(arg0);
 	}
 
 	public Set<String> keySet() {
-		// TODO Auto-generated method stub
 		return _values.keySet();
 	}
 
 	public Object put(String arg0, Object arg1) {
-		// TODO Auto-generated method stub
 		return _values.put(arg0, arg1);
 	}
 
 	public void putAll(BSONObject arg0) {
-		// TODO Auto-generated method stub
 		_values.putAll(arg0);
 	}
 
 	public void putAll(Map arg0) {
-		// TODO Auto-generated method stub
 		_values.putAll(arg0);
 		
 	}
 
 	public Object removeField(String arg0) {
-		// TODO Auto-generated method stub
 		return _values.removeField(arg0);
 	}
 
 	public Map toMap() {
-		// TODO Auto-generated method stub
 		return _values.toMap();
 	}
 
 	public boolean isPartialObject() {
-		// TODO Auto-generated method stub
 		return _values.isPartialObject();
 	}
 
 	public void markAsPartialObject() {
-		// TODO Auto-generated method stub
 		_values.markAsPartialObject();
 	}
 	
@@ -259,4 +246,46 @@ public class MWGenericRecord implements DBObject{
 	public DBRef ref(){
 		return new DBRef(editingContext.database(), MWModel.defaultModel().entityForDBObject(values()).collection(), primaryKey());
 	}
+	
+	public void validateForDelete() {
+		//TODO
+	}
+	
+	public void validateForInsert() {
+		//TODO		
+	}
+	
+	public void validateForSave() {
+		//TODO
+	}
+	
+	
+	public void validateForUpdate() {
+		//TODO
+	}
+	
+	
+	public void  validateTakeValueForKeyPath(Object value, String keyPath) {
+		//TODO
+	}
+	
+	public void validateValueForKey(Object value, String key) {
+		if(ID_KEY.equals(key)){
+			throw new IllegalArgumentException(ID_KEY+" is a primaryKey and cannot be changed");
+		}
+		if(MWEntity.ENTITY_KEY.equals(key)){
+			throw new IllegalArgumentException(MWEntity.ENTITY_KEY+" cannot be changed");
+		}
+		//TODO
+	}
+	
+	public void willChange() {
+		//TODO
+	}
+	
+	public void willRead() {
+		//TODO
+	}
+	
 }
+

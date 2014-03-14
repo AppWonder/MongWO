@@ -1,5 +1,6 @@
-package com.dd.mongwo;
+package com.dd.mongwo.mwaccess;
 
+import com.dd.mongwo.mwcontrol.MWGenericRecord;
 import com.webobjects.foundation.NSMutableDictionary;
 
 public class MWEntity {
@@ -44,7 +45,7 @@ public class MWEntity {
 		return objectClass;
 	}
 	
-	protected MWGenericRecord newObject(){
+	public MWGenericRecord newObject(){
 		try{
 			return objectClass.newInstance();
 		}catch(Exception e){

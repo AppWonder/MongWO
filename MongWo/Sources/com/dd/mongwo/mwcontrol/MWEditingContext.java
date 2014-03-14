@@ -1,4 +1,4 @@
-package com.dd.mongwo;
+package com.dd.mongwo.mwcontrol;
 
 import java.util.List;
 import java.util.regex.Pattern;
@@ -7,6 +7,8 @@ import org.apache.commons.lang.StringUtils;
 import org.bson.types.Code;
 import org.bson.types.ObjectId;
 
+import com.dd.mongwo.mwaccess.MWEntity;
+import com.dd.mongwo.mwaccess.MWModel;
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
@@ -67,7 +69,6 @@ public class MWEditingContext {
 	}
 	
 	public NSArray objectsWithFetchSpecification(EOFetchSpecification spec){
-		//spec.qualifier().
 		
 		List<DBObject> result;
 		DBCollection collection = database().getCollection(model.entityWithName(spec.entityName()).collection());
@@ -108,8 +109,6 @@ public class MWEditingContext {
 		int i = 0;
 		try{
 		for(DBObject dict : result){
-			//Class.forName("Movie").getConstructor(DBObject.class, DBCollection.class).newInstance(dict, ec.database().getCollection(MWEntity.entityWithName(entityName).collection()));
-			
 			MWGenericRecord record = (MWGenericRecord)model.entityWithName(spec.entityName()).objectClass().newInstance();
 			record.init(dict, database().getCollection(model.entityWithName(spec.entityName()).collection()), this);
 			objects[i] = record;
@@ -307,9 +306,7 @@ public class MWEditingContext {
 		String key = StringUtils.substringAfterLast(keyPath, ".");
 		NSMutableArray<MWGenericRecord> records = new NSMutableArray<MWGenericRecord>();
 		BasicDBObject refQueryObject = new BasicDBObject("$id", genericRecord.primaryKey());//new Code("DBRef(\\\""+genericRecord.ref().getRef()+"\\\", ObjectId(\\\""+genericRecord.ref().getId()+"\\\"))"));
-		System.out.println(QueryBuilder.start(key).elemMatch(refQueryObject).get());
 		List<DBObject> list = collection.find(QueryBuilder.start(key).elemMatch(refQueryObject).get()).toArray();
-		System.out.println("list.count: "+list.size());
 		for(DBObject object : list){
 			MWGenericRecord record = MWModel.defaultModel().entityForDBObject(object).newObject();
 			record.init(object, collection, this);

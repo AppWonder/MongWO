@@ -1,5 +1,5 @@
 package com.dd.testapp;
-import com.dd.mongwo.MWGenericRecord;
+import com.dd.mongwo.mwcontrol.MWGenericRecord;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
 
